@@ -82,9 +82,9 @@ export const getAllSoftwareApplications = () => async (dispatch) =>{
 }
 
 export const addNewSoftwareApplications = (addNewData) => async (dispatch) =>{
-    dispatch(softwareApplicationSlice.actions.addNewSoftwareApplications());
+    dispatch(softwareApplicationSlice.actions.addNewSoftwareRequest());
     try {
-        const response = await axios.post("http://localhost:4000/api/v1/sofware/add",
+        const response = await axios.post("http://localhost:4000/api/v1/software/add",
             addNewData,
             {withCredentials: true, headers: {"Content-Type" : "multipart/form-data"}}
         );
@@ -113,7 +113,7 @@ export const clearAllApplicationSliceErrors = () => (dispatch) =>{
 }
 
 export const resetApplicationSlice = () => (dispatch) =>{
-    dispatch(softwareApplicationSlice.actions.resetApplicationSlice)
+    dispatch(softwareApplicationSlice.actions.resetApplicationSlice())
 }
 
 

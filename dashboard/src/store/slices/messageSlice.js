@@ -40,7 +40,7 @@ const messageSlice = createSlice({
       state.loading = false;
       state.message = null;
     },
-    resetMessageSlice(state, action) {
+    resetMessagesSlice(state, action) {
       state.error = null;
       state.messages = state.messages;
       state.message = null;
@@ -56,12 +56,12 @@ const messageSlice = createSlice({
 export const getAllMessages = () => async (dispatch) => {
   dispatch(messageSlice.actions.getAllMessagesRequest());
   try {
-    const response = await axios.get(
+    const { data } = await axios.get(
       "http://localhost:4000/api/v1/message/getAllMessage",
       { withCredentials: true }
     );
     dispatch(
-      messageSlice.actions.getAllMessagesSuccess(response.data.messages)
+      messageSlice.actions.getAllMessagesSuccess(data.messages)
     );
     dispatch(messageSlice.actions.clearAllErrors());
   } catch (error) {
@@ -90,11 +90,11 @@ export const deleteMessage = (id) => async (dispatch) => {
 };
 
 export const clearAllMessageErrors = () => (dispatch) => {
-  dispatch(messageSlice.actions.clearAllErrors());
+  dispatch(messageSlice.actions.resetMessagesSlice());
 };
 
 export const resetMessagesSlice = () => (dispatch) => {
-  dispatch(messageSlice.actions.resetMessageSlice());
+  dispatch(messageSlice.actions.resetMessagesSlice());
 };
 
 export default messageSlice.reducer;

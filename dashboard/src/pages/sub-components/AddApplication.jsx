@@ -25,8 +25,10 @@ const AddApplication = () => {
     };
   };
 
-  const {loading, error, message} = useSelector((state) => state.AddApplication)
+  const {loading, error, message} = useSelector((state) => state.application)
   const dispatch = useDispatch();
+
+  
   const handleAddSoftwareApp = async (e) => {
     e.preventDefault();
     const formData = new FormData();

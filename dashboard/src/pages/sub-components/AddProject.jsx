@@ -25,7 +25,7 @@ const AddProject = () => {
   const [description, setDescription] = useState("");
   const [projectBanner, setProjectBanner] = useState("");
   const [projectBannerPreview, setProjectBannerPreview] = useState("");
-  const [githubLink, setGithubLink] = useState("");
+  const [gitRepoLink, setGitRepoLink] = useState("");
   const [projectLink, setProjectLink] = useState("");
   const [technologies, setTechnologies] = useState("");
   const [stack, setStack] = useState("");
@@ -49,7 +49,7 @@ const AddProject = () => {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
-    formData.append("githubLink", githubLink);
+    formData.append("gitRepoLink", gitRepoLink);
     formData.append("projectLink", projectLink);
     formData.append("technologies", technologies);
     formData.append("stack", stack);
@@ -188,8 +188,8 @@ const AddProject = () => {
                         type="text"
                         className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                         placeholder="Please your github repository link here"
-                        value={githubLink}
-                        onChange={(e) => setGithubLink(e.target.value)}
+                        value={gitRepoLink}
+                        onChange={(e) => setGitRepoLink(e.target.value)}
                       />
                     </div>
                   </div>
@@ -224,7 +224,7 @@ const AddProject = () => {
                         <img
                           className="mx-auto h-[250px] w-full text-gray-300"
                           viewBox="0 0 24 24"
-                          src={projectBannerPreview ? `${projectBannerPreview}` : "/docHolder.jpg"}
+                          src={projectBannerPreview ? `${projectBannerPreview}` : " "}
                         />
                       ) : (
                         <svg

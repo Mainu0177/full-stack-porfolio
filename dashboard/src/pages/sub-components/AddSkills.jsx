@@ -25,7 +25,7 @@ const AddSkills = () => {
 
   const {loading, error, message} = useSelector((state) => state.skill);
   const dispatch = useDispatch();
-  const handleAddNewSkill = (e) =>{
+  const handleAddNewSkill = async (e) =>{
     e.preventDefault()
     const formData = new FormData();
     formData.append("title", title);

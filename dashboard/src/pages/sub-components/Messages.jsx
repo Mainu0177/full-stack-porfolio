@@ -1,4 +1,5 @@
 import {useNavigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import {Tabs, TabsContent} from '@/components/ui/tabs';
 import {Card, CardHeader, CardTitle, CardContent, CardDescription, CardFooter} from '@/components/ui/card';
@@ -29,7 +30,6 @@ const Messages = () => {
       toast.error(error);
       dispatch(clearAllMessageErrors())
     }
-
     if(message){
       toast.success(message);
       dispatch(resetMessagesSlice());
@@ -45,7 +45,9 @@ const Messages = () => {
             <Card>
               <CardHeader className = "flex gap-4 sm:justify-between sm:flex-row sm:items-center">
                 <CardTitle>Message</CardTitle>
-                <Button className = "w-fit" onClick = {handleReturnToDashboard}>Return to Dashboard</Button>
+                <Link to = {"/"}>
+                  <Button className = "w-fit" onClick = {handleReturnToDashboard}>Return to Dashboard</Button>
+                </Link>
               </CardHeader>
               <CardContent className = "grid sm:grid-cols-2 gap-4">
                 {

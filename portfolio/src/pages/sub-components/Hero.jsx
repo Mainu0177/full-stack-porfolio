@@ -19,6 +19,7 @@ const Hero = () => {
         {withCredentials: true}
       );
       setUser(data.user);
+      console.log("user details", data.user)
     }
     getMyProfile();
   }, [])

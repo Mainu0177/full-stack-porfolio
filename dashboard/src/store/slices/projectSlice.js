@@ -13,12 +13,12 @@ const projectSlice = createSlice({
         getAllProjectsRequest(state, action){
             state.projects = [];
             state.error = null;
-            state.loading = null;
+            state.loading = true;
         },
         getAllProjectsSuccess(state, action){
             state.projects = action.payload;
             state.error = null;
-            state.loading = true;
+            state.loading = false;
         },
         getAllProjectsFailed(state, action){
             state.projects = state.projects;
@@ -127,7 +127,7 @@ export const updateProject = (id, newData) => async (dispatch) =>{
     dispatch(projectSlice.actions.updateProjectRequest());
     try {
         const { data } = await axios.put(`http://localhost:4000/api/v1/project/delete/${id}`, 
-            newData,
+            {newData},
             {withCredentials: true, headers: {"Content-Type": "multipart/form-data"}}
         )
         dispatch(projectSlice.actions.updateProjectSuccess(data.message));
@@ -138,11 +138,11 @@ export const updateProject = (id, newData) => async (dispatch) =>{
 }
 
 export const clearAllProjectSliceErrors = () => (dispatch) =>{
-    dispatch(projectSlice.actions.clearAllErrors());
+    dispatch(projectSlice.actions.resetProjectSlice());
 }
 
 export const resetProjectSlice = () => (dispatch) =>{
-    dispatch(projectSlice.actions.resetProjectSlice)
+    dispatch(projectSlice.actions.resetProjectSlice())
 }
 
 

@@ -16,11 +16,12 @@ export const addNewProject = catchAsyncErrors(async (req, res, next) =>{
     }
     const cloudinaryResponse = await cloudinary.uploader.upload(
         projectBanner.tempFilePath,
-        { folder: "PROJECT_IMAGES"}
+        { folder: "PROJECT_images"}
     );
     if(!cloudinaryResponse || cloudinaryResponse.error){
         console.error("Cloudinary Error:", cloudinary.error || "Unknown cloudinary error");
         return next(new ErrorHandler("Failed to upload projectBanner to cloudinay.", 500));
+        
     }
     const project = await Project.create({
         title,

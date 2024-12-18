@@ -105,8 +105,8 @@ export const logout = catchAsyncErrors(async (req, res, next) =>{
 })
 
 export const getAllUser = catchAsyncErrors(async (req, res, next) =>{
-    console.log("my code", req?.user)
-    const user = await User.findById( req?.user?.id)
+    // console.log("my code", req?.user)
+    const user = await User.findById(req.user.id)
     res.status(200).json({
         success: true, 
         user,
@@ -188,7 +188,7 @@ export const updatePassword = catchAsyncErrors(async (req, res, next) =>{
 })
 
 export const getUserForPortfolio = catchAsyncErrors(async (req, res, next) =>{
-    const id = "674dd37c67becccaa5acc6eb";
+    const id = "675efc5686f7d914f80443a7";
     const user = await User.findById(id);
     res.status(200).json({
         success: true,
