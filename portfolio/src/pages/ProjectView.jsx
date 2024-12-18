@@ -21,7 +21,7 @@ const ProjectView = () => {
 
   useEffect(() =>{
     const getProject = async () =>{
-      await axios.get(`http://localhost:4000/api/v1/project/get/${id}`,
+      await axios.get(`http://localhost:4000/api/v1/project/getAll/${id}`,
         {withCredentials: true}
       )
       .then((res) =>{

@@ -5,6 +5,7 @@ import Hero from "./sub-components/Hero"
 import Skill from "./sub-components/Skill"
 import Timeline from "./sub-components/Timeline"
 import Portfolio from "./sub-components/Portfolio"
+import Projects from "./sub-components/Projects"
 
 
 const Home = () => {
@@ -14,7 +15,8 @@ const Home = () => {
         <Timeline />
         <About />
         <Skill />
-        <Portfolio />
+        <Projects />
+        {/* <Portfolio /> */}
         <MyApps />
         <Contact />
     </article>

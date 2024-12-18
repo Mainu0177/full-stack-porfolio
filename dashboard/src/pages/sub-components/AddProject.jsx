@@ -59,6 +59,7 @@ const AddProject = () => {
   }
 
   useEffect(() =>{
+    console.log("useEffect", error, message)
     if(error){
       toast.error(error);
       dispatch(clearAllSkillSliceErrors());
@@ -68,7 +69,7 @@ const AddProject = () => {
       dispatch(resetSkillSlice());
       dispatch(getAllProjects())
     }
-  }, [dispatch, error, message, loading])
+  }, [dispatch, error, message])
 
   return (
     <>

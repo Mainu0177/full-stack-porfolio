@@ -39,7 +39,7 @@ const ManageProjects = () => {
   const handleDeleteProject = (id) =>{
     dispatch(deleteProject(id))
   }
-
+  console.log("prjects added", projects)
   useEffect(() =>{
     if(error){
       toast.error(error);
@@ -50,7 +50,7 @@ const ManageProjects = () => {
       dispatch(resetProjectSlice())
       dispatch(getAllProjects())
     }
-  }, [dispatch, loading, error, message])
+  }, [dispatch, error, message])
 
   return (
     <>

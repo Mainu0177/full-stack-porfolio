@@ -14,11 +14,13 @@ const projectSlice = createSlice({
             state.projects = [];
             state.error = null;
             state.loading = true;
+            state.message = null;
         },
         getAllProjectsSuccess(state, action){
             state.projects = action.payload;
             state.error = null;
             state.loading = false;
+            // state.message = "projects loaded successfully"
         },
         getAllProjectsFailed(state, action){
             state.projects = state.projects;
@@ -89,7 +91,7 @@ export const getAllProjects = () => async (dispatch) =>{
         const { data } = await axios.get("http://localhost:4000/api/v1/project/getAll",
             {withCredentials: true}
         );
-        dispatch(projectSlice.actions.getAllProjectsSuccess(data.projects));
+        dispatch(projectSlice.actions.getAllProjectsSuccess(data.project));
         dispatch(projectSlice.actions.clearAllErrors())
     } catch (error) {
         dispatch(projectSlice.actions.getAllProjectsFailed(error.response.data.message))
