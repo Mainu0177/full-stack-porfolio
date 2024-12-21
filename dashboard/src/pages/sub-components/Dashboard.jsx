@@ -254,7 +254,7 @@ const Dashboard = () => {
                             <TableRow>
                               <TableHead>Title</TableHead>
                               <TableHead>From</TableHead>
-                              <TableHead>To</TableHead>
+                              <TableHead className = "text-right">To</TableHead>
                             </TableRow>
                           </TableHeader>
                           <TableBody>

@@ -61,7 +61,7 @@ export const getAllMessages = () => async (dispatch) => {
       { withCredentials: true }
     );
     dispatch(
-      messageSlice.actions.getAllMessagesSuccess(data.messages)
+      messageSlice.actions.getAllMessagesSuccess(data.message)
     );
     dispatch(messageSlice.actions.clearAllErrors());
   } catch (error) {

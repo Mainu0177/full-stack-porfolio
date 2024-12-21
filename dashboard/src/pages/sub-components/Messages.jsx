@@ -1,5 +1,5 @@
-import {useNavigate} from 'react-router-dom';
-import {Link} from 'react-router-dom';
+
+import {Link, useNavigate} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import {Tabs, TabsContent} from '@/components/ui/tabs';
 import {Card, CardHeader, CardTitle, CardContent, CardDescription, CardFooter} from '@/components/ui/card';
@@ -12,11 +12,12 @@ import { clearAllMessageErrors, deleteMessage, getAllMessages, resetMessagesSlic
 
 const Messages = () => {
   const navigateTo = useNavigate();
-  
   const handleReturnToDashboard = () =>{
     navigateTo("/");
+    alert("hellow")
   };
-  const {message, error, messages, loading} = useSelector((state) => state.message);
+  const {messages, message, error, loading} = useSelector((state) => state.message);
+  
   const [messageId, setMessageId] = useState("");
   const dispatch = useDispatch();
 
@@ -24,6 +25,7 @@ const Messages = () => {
     setMessageId(id);
     dispatch(deleteMessage(id))
   }
+
 
   useEffect(() =>{
     if(error){
@@ -45,13 +47,14 @@ const Messages = () => {
             <Card>
               <CardHeader className = "flex gap-4 sm:justify-between sm:flex-row sm:items-center">
                 <CardTitle>Message</CardTitle>
-                <Link to = {"/"}>
+                {/* <Link to = {"/"}> */}
                   <Button className = "w-fit" onClick = {handleReturnToDashboard}>Return to Dashboard</Button>
-                </Link>
+                  {/* <Button >Return to Dashboard</Button> */}
+                {/* </Link> */}
               </CardHeader>
               <CardContent className = "grid sm:grid-cols-2 gap-4">
                 {
-                  message && messages.length > 0 ? (
+                  messages && messages.length > 0 ? (
                     messages && messages.map(element =>{
                       return (
                         <Card key={element._id} className = "grid gap-2">

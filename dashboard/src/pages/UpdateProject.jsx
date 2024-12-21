@@ -25,7 +25,7 @@ const UpdateProject = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [projectBanner, setProjectBanner] = useState("");
-  const [githubLink, setGithubLink] = useState("");
+  const [gitRepoLink, setGitRepoLink] = useState("");
   const [projectLink, setProjectLink] = useState("");
   const [technologies, setTechnologies] = useState("");
   const [stack, setStack] = useState("");
@@ -37,7 +37,7 @@ const UpdateProject = () => {
 
   const {id} = useParams();
 
-  const handleProjectBannerPreview = (e) =>{
+  const handleProjectBanner = (e) =>{
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -49,7 +49,7 @@ const UpdateProject = () => {
 
   useEffect(() =>{
     const getProject = async () =>{
-      await axios.get(`http://localhost:4000/api/v1/project/get/${id}`,
+      await axios.get(`http://localhost:4000/api/v1/project/getsingleProject/${id}`,
         {withCredentials: true}
       )
       .then((res) =>{
@@ -59,7 +59,7 @@ const UpdateProject = () => {
         setDeployed(res.data.project.deployed);
         setProjectLink(res.data.project.projectLink);
         setTechnologies(res.data.project.technologies);
-        setGithubLink(res.data.project.githubLink);
+        setGitRepoLink(res.data.project.gitRepoLink);
         setProjectBanner(res.data.project.projectBanner && res.data.project.projectBanner.url);
         setProjectBannerPreview(res.data.project.projectBanner && res.data.project.projectBanner.url);
         setStack(res.data.project.stack)
@@ -87,7 +87,7 @@ const UpdateProject = () => {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
-    formData.append("githubLink", githubLink);
+    formData.append("gitRepoLink", gitRepoLink);
     formData.append("projectLink", projectLink);
     formData.append("technologies", technologies);
     formData.append("stack", stack);
@@ -115,11 +115,10 @@ const UpdateProject = () => {
               </div>
       
               <div className="mt-10 flex flex-col gap-5">
-
                 <div className="w-full sm:col-span-4">
-                  <img src={projectBannerPreview ? projectBannerPreview : "/fackImage"} alt="projectBanner" className="w-full h-auto" />
+                  <img src={projectBannerPreview ? projectBannerPreview : "/"} alt="projectBanner" className="w-full h-auto" />
                   <div className="relative">
-                    <Input type = "file" onChange = {handleProjectBannerPreview} className = "avatar-update-btn mt-4 w-full" /> 
+                    <Input type = "file" onChange = {handleProjectBanner} className = "avatar-update-btn mt-4 w-full" /> 
                   </div>
                 </div>
 
@@ -228,8 +227,8 @@ const UpdateProject = () => {
                         type="text"
                         className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                         placeholder="Please your github repository link here"
-                        value={githubLink}
-                        onChange={(e) => setGithubLink(e.target.value)}
+                        value={gitRepoLink}
+                        onChange={(e) => setGitRepoLink(e.target.value)}
                       />
                     </div>
                   </div>
@@ -255,7 +254,7 @@ const UpdateProject = () => {
               </div>
             </div>
           </div>
-            <div className="flex justify-center w-full items-center">
+            <div className="mt-6 gap-x-6 flex justify-end items-center">
               {
                 loading ? (<SpecialLoadingButton content={"Updating"} width = {"w-52"} />)
                 : (<Button type = "button" onClick = { handleUpdateProject} className = "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-52" >

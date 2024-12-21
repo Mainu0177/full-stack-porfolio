@@ -4,7 +4,7 @@ import Contact from "./sub-components/Contact"
 import Hero from "./sub-components/Hero"
 import Skill from "./sub-components/Skill"
 import Timeline from "./sub-components/Timeline"
-import Portfolio from "./sub-components/Portfolio"
+// import Portfolio from "./sub-components/Portfolio"
 import Projects from "./sub-components/Projects"
 
 

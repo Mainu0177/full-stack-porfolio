@@ -9,7 +9,7 @@ const ViewProject = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [projectBanner, setProjectBanner] = useState("");
-  const [githubLink, setGithubLink] = useState("");
+  const [gitRepoLink, setGitRepoLink] = useState("");
   const [projectLink, setProjectLink] = useState("");
   const [technologies, setTechnologies] = useState("");
   const [stack, setStack] = useState("");
@@ -29,7 +29,7 @@ const ViewProject = () => {
         setDeployed(res.data.project.deployed);
         setProjectLink(res.data.project.projectLink);
         setTechnologies(res.data.project.technologies);
-        setGithubLink(res.data.project.githubLink);
+        setGitRepoLink(res.data.project.gitRepoLink);
         setProjectBanner(res.data.project.projectBanner && res.data.project.projectBanner.url);
         setStack(res.data.project.stack)
       })
@@ -94,8 +94,8 @@ const ViewProject = () => {
                 </div>
                 <div className="w-full sm:col-span-4">
                   <p className="text-2xl mb-2">Github Repository Link:</p>
-                  <Link to={githubLink} target = "_blank" className="text-sky-700">
-                    {githubLink}
+                  <Link to={gitRepoLink} target = "_blank" className="text-sky-700">
+                    {gitRepoLink}
                   </Link>
                 </div>
                 <div className="w-full sm:col-span-4">

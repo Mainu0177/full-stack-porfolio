@@ -76,7 +76,7 @@ export const getAllTimeline = () => async (dispatch) =>{
         const { data } = await axios.get("http://localhost:4000/api/v1/timeline/getAll",
             {withCredentials: true}
         );
-        dispatch(timelineSlice.actions.getAllTimelineSuccess(data.message));
+        dispatch(timelineSlice.actions.getAllTimelineSuccess(data.timeline));
         dispatch(timelineSlice.actions.clearAllErrors());
     } catch (error) {
         dispatch(timelineSlice.actions.getAllTimelineFailed(error.response.data.message));

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify';
 
 import { clearAllTimelineErrors, deleteTimeline, getAllTimeline, resetTimelineSlice } from '../store/slices/timelineSlice';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {Button} from "@/components/ui/button"
 import { Trash2 } from "lucide-react";
 
@@ -22,10 +22,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Tabs, TabsContent } from "@/components/ui/tabs"
 
 
 const ManageTimeline = () => {
+  const navigateTo = useNavigate()
+  const handleReturnToDashboard = () =>{
+    navigateTo("/")
+
+  }
   const {loading, timeline, error, message} = useSelector((state) => state.timeline);
 
   const dispatch = useDispatch();
@@ -54,18 +59,18 @@ const ManageTimeline = () => {
             <Card>
               <CardHeader className = "flex ga-4 sm:justify-between sm:flex-row sm:items-center">
                 <CardTitle>Manage Your Timeline</CardTitle>
-                <Link to = {"/"}>
-                  <Button>Return to Dashboard</Button>
-                </Link>
+                {/* <Link to = {"/"}> */}
+                  <Button className = "w-fit" onClick={handleReturnToDashboard}>Return to Dashboard</Button>
+                {/* </Link> */}
               </CardHeader>
               <CardContent className = "grid grid-cols-1 gap-4">
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead className = "">Title</TableHead>
-                      <TableHead className = "">Description</TableHead>
-                      <TableHead className = "">From</TableHead>
-                      <TableHead className = "">To</TableHead>
+                      <TableHead>Title</TableHead>
+                      <TableHead className = "md:table-cell">Description</TableHead>
+                      <TableHead className = "md:table-cell">From</TableHead>
+                      <TableHead className = "text-right">To</TableHead>
                       <TableHead className = "text-right">Action</TableHead>
                     </TableRow>
                   </TableHeader>

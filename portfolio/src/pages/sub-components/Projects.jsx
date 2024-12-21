@@ -16,8 +16,7 @@ const Projects = () => {
             const { data } = await axios.get("http://localhost:4000/api/v1/project/getAll",
                 {withCredential: true}
             );
-            console.log("all projects", data)
-            setProjects(data.projects)
+            setProjects(data.project)
         }
         getMyProjects();
     }, [])
@@ -49,15 +48,15 @@ const Projects = () => {
                 {
                 viewAll ? projects && projects.map((element) =>{
                     return (
-                    <Link to={`/project/getAll/${element._id}`} key={element._id}>
-                        <img src={element.projectBanner && element.projectBanner.url} alt="Project banner" />
+                    <Link to={`/project/${element._id}`} key={element._id}>
+                        <img src={element.projectBanner && element.projectBanner.url} alt={element.title} />
                     </Link>
                     );
                 }) : projects &&
                     projects.slice(0, 9).map((element) =>{
                         return (
-                        <Link to={`/project/getAll/${element._id}`} key={element._id}>
-                            <img src={element.projectBanner && element.projectBanner.url} alt="Project banner" />
+                        <Link to={`/project/${element._id}`} key={element._id}>
+                            <img src={element.projectBanner && element.projectBanner.url} alt={element.title} />
                         </Link>
                     )
                 })
